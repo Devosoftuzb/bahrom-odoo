@@ -6,7 +6,7 @@
             <h3>Recommended Products</h3>
             <div t-if="recommended_products">
                 <div class="row">
-                    <t t-name="your_module.most_sold_products_template">
+                    <t t-name="ecom.most_sold_products">
                         <div class="most-sold-products">
                             <h2>Most Sold Products</h2>
                             <ul>

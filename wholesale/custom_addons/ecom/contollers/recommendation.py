@@ -17,7 +17,7 @@ class ProductController(http.Controller):
         }
         print(product, recommended_products)
 
-        return request.render("website_sale.product", values)
+        return request.render("ecom.custom_product_detail", values)
 
     @http.route('/shop/most_sold_products', type='http', auth='public', website=True)
     def most_sold_products(self, **kwargs):
@@ -41,5 +41,7 @@ class ProductController(http.Controller):
         # Pass the product sales data to the template
         print(product_sales)
         return request.render('ecom.most_sold_products', {
-            'product_sales': product_sales
+            'product_sales': product_sales,
+            'test_value': 'test',
+            'recommended_products': True,
         })
