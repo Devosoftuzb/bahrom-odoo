@@ -1,0 +1,24 @@
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+.product_variations {
+    margin: .5rem;
+}
+
+.product_variation {
+    min-width: 50px;
+    min-height: 50px;
+    max-width: fit-content;
+    background: grey;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selected {
+    outline: 3px solid black;
+    outline-offset: 2px;
+}

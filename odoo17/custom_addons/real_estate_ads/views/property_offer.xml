@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <record id="view_estate_property_offer_form" model="ir.ui.view">
+        <field name="name">estate.property.offer.form</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="price" />
+                        <field name="partner_id" />
+                        <field name="validity" />
+                        <field name="creation_date" />
+                        <field name="deadline" />
+                        <field name="status" />
+                    </group>
+                </sheet>
+
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="message_ids" options="{'post_refresh': 'recipients'}" />
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_estate_property_offer_tree" model="ir.ui.view">
+        <field name="name">estate.property.offer.form</field>
+        <field name="model">estate.property.offer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="price" />
+                <field name="partner_id" />
+                <field name="validity" />
+                <field name="creation_date" />
+                <field name="deadline" />
+                <field name="status" />
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_estate_property_offer" model="ir.actions.act_window">
+        <field name="name">Offers</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">estate.property.offer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_property_offer"
+              name="Offers"
+              parent="menu_advertisements"
+              action="action_estate_property_offer"
+              sequence="10" />
+</odoo>

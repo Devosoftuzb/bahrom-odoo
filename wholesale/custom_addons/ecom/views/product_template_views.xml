@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="custom_product_detail" inherit_id="website_sale.product">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/ecom/static/src/css/product_detail.css"/>
+        </xpath>
+        <xpath expr="///div[@id='product_full_description']" position="after">
+            <div class="product-recommendation">
+            <h3>Recommended Products</h3>
+            <div t-if="recommended_products">
+                <div class="row">
+                    <t t-foreach="recommended_products" t-as="product">
+                        <div class="col-md-4">
+                            <div class="recommended-product-card">
+                                <a t-att-href="'/shop/product/%s' % product.id">
+                                    <img t-att-src="'/web/image/product.product/%s/image_1920' % product.id"
+                                         class="img-fluid" />
+                                    <div class="product-name">
+                                        <t t-esc="product.name" />
+                                    </div>
+                                    <div class="product-price">
+                                        <span t-esc="product.lst_price" /> <t t-esc="product.currency_id.symbol" />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+        </xpath>
+    </template>
+</odoo>

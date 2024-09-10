@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <template id="most_sold_products">
+        <t t-call="website.layout">
+            <div class="product-recommendation">
+            <h3>Recommended Products</h3>
+            <div t-if="recommended_products">
+                <div class="row">
+                    <t t-name="your_module.most_sold_products_template">
+                        <div class="most-sold-products">
+                            <h2>Most Sold Products</h2>
+                            <ul>
+                                <t t-foreach="product_sales" t-as="product_data">
+                                    <li>
+                                        <a t-attf-href="/shop/product/#{product_data['product'].id}">
+                                            <t t-esc="product_data['product'].name"/>
+                                        </a>
+                                        - Sold Quantity: <t t-esc="product_data['sales_count']"/>
+                                    </li>
+                                </t>
+                            </ul>
+                        </div>
+                    </t>
+                </div>
+            </div>
+        </div>
+        </t>
+    </template>
+</odoo>

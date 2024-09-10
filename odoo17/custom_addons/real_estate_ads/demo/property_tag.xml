@@ -1,0 +1,19 @@
+<odoo>
+    <data>
+        <record id="property_type_cozy" model="estate.property.tag">
+            <field name="name">Cozy</field>
+        </record>
+
+        <record id="property_type_renovated" model="estate.property.tag">
+            <field name="name">Renovated</field>
+        </record>
+
+        <record id="property_type_new" model="estate.property.tag">
+            <field name="name">New</field>
+        </record>
+
+        <record id="property_type_abandoned" model="estate.property.tag">
+            <field name="name">Abandoned</field>
+        </record>
+    </data>
+</odoo>
