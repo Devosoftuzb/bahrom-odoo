@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="menu_todo_root"
+              name="ToDo"
+              sequence="11" />
+
+    <menuitem id="menu_todo_tasks"
+              name="Tasks"
+              parent="menu_todo_root"
+              action="todoapp.action_todo_task"
+              sequence="15" />
+</odoo>

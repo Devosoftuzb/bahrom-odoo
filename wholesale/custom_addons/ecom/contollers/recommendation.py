@@ -3,7 +3,7 @@ from odoo.http import request
 
 
 class ProductController(http.Controller):
-    @http.route(['/shop/<model("product.template"):product>'], type='http', auth="public", website=True)
+    @http.route(['/shop/shop/<model("product.template"):product>'], type='http', auth="public", website=True)
     def product_recommendation(self, product, **kwargs):
         # Get recommended products (e.g., products in the same category)
         recommended_products = request.env['product.template'].search([

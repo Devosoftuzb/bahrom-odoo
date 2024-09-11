@@ -1,0 +1,9 @@
+/* Default calendar event color */
+.o_calendar_view .o_calendar_event {
+    background-color: transparent !important; /* Reset to transparent */
+}
+
+/* Apply color from the field */
+.o_calendar_event.custom-color {
+    background-color: var(--task-color) !important;
+}
