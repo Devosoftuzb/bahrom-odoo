@@ -14,7 +14,8 @@ class Task(models.Model):
     end_date = fields.Datetime(string='End date (optional)')
     notes = fields.Text(string='Task notes')
     tags_ids = fields.Many2many('todo.tag', string='Tags')
-    color = fields.Char(string='Color')
+    categories_ids = fields.Many2one('todo.category', string='Categories')
+    color = fields.Char(string='Color', default="#ffffff")
 
     location_latitude = fields.Float(string='Latitude', track_visibility='onchange')
     location_longitude = fields.Float(string='Longitude', track_visibility='onchange')
@@ -42,10 +43,21 @@ class Task(models.Model):
                 raise ValidationError('End date cannot be before start date')
 
 
-class Tag(models.Model):
-    _name = 'todo.tag'
-    _description = 'TODO tasks` tags'
+class AbstractLabel(models.AbstractModel):
+    _name = 'abstract.model.label'
 
     name = fields.Char(string='Name', required=True)
     description = fields.Char(string='Description')
     color = fields.Integer(string="Color")
+
+
+class Category(models.Model):
+    _name = 'todo.category'
+    _description = 'TODO tasks categories'
+    _inherit = 'abstract.model.label'
+
+
+class Tag(models.Model):
+    _name = 'todo.tag'
+    _description = 'TODO tasks` tags'
+    _inherit = 'abstract.model.label'
