@@ -5,6 +5,7 @@
             <link rel="stylesheet" type="text/css" href="/ecom/static/src/css/product_detail.css"/>
         </xpath>
         <xpath expr="///div[@id='product_full_description']" position="after">
+            <div class="container">
 <!--            <div class="product-recommendation" t-name="ecom.recommend_products">-->
                 <h3>Recommended Products</h3>
                 <t t-out="product.name"></t>
@@ -29,6 +30,30 @@
 <!--                    </div>-->
 <!--                </div>-->
 <!--            </div>-->
+
+                <t t-if="request.env.user.partner_id.has_bought_product(product.id)">
+                    <!-- Review Form -->
+                    <form action="/submit-review" method="post">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="hidden" name="product_id" t-att-value="product.id"/>
+
+                        <div class="mb-3">
+                            <label for="rating" class="form-label">Rating</label>
+                            <input id="rating" class="form-control" type="number" name="rating" min="1" max="5" required="true" placeholder="Rating (1-5)"/>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Comment</label>
+                            <textarea name="comment" class="form-control" placeholder="Leave your review"/>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </form>
+                </t>
+                <t t-else="">
+                    <p>You can only review products you've purchased.</p>
+                </t>
+            </div>
         </xpath>
     </template>
 </odoo>

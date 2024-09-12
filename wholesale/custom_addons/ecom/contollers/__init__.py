@@ -1,1 +1,1 @@
-from . import recommendation
+from . import recommendation, review
