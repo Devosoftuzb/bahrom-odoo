@@ -1,4 +1,4 @@
-odoo.define('my_module.calendar_custom', function (require) {
+odoo.define('your_module_name.calendar_custom', function (require) {
     'use strict';
 
     var CalendarView = require('web.CalendarView');

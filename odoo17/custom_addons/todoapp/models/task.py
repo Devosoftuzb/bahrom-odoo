@@ -10,10 +10,14 @@ class Task(models.Model):
     name = fields.Char(string='Task name', required=True)
     status = fields.Selection([('not_completed', 'Not Completed'),
                                ('completed', 'Completed')], string='Status of task', default='not_completed')
-    start_date = fields.Datetime(string='Start date')
-    end_date = fields.Datetime(string='End date')
+    start_date = fields.Datetime(string='Start date (optional)')
+    end_date = fields.Datetime(string='End date (optional)')
     notes = fields.Text(string='Task notes')
+    tags_ids = fields.Many2many('todo.tag', string='Tags')
     color = fields.Char(string='Color')
+
+    location_latitude = fields.Float(string='Latitude', track_visibility='onchange')
+    location_longitude = fields.Float(string='Longitude', track_visibility='onchange')
 
     assignment_members_ids = fields.Many2many('res.partner', string='Assignment Members')
 
