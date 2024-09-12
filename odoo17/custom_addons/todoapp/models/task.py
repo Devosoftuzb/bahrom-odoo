@@ -18,18 +18,18 @@ class Task(models.Model):
     assignment_members_ids = fields.Many2many('res.partner', string='Assignment Members')
 
     def action_completed(self):
+        self._validate_status() # validate action
         self.status = 'completed'
 
     def action_not_completed(self):
+        self._validate_status()  # validate action
         self.status = 'not_completed'
 
     def _validate_status(self):
-        user_ids = self.env['todo.task'].search([
-            ('assignment_members_ids', 'in', [self.env.user.id])
-        ])
-
-        if not user_ids:
-            raise ValidationError('You are not assignment to this task')
+        for task in self:
+            if self.env.user.id not in task.assignment_members_ids.ids:
+                if task.create_uid.id != self.env.user.id:
+                    raise ValidationError("You are not assignment to perform this action for task: %s" % task.name)
 
     @api.constrains('start_date', 'end_date')
     def _check_date(self):
