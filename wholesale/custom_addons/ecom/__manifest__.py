@@ -10,6 +10,11 @@
         'views/product_template_views.xml',
         'views/most_sold_products_template.xml',
     ],
+    'assets': {
+        'web.assets_frontend': [
+
+        ],
+    },
     'installable': True,
     'application': False,
 }

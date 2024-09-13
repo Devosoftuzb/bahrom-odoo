@@ -14,11 +14,13 @@ class ResPartner(models.Model):
 
     def has_bought_product(self, product_id):
         self.ensure_one()
+
         purchase_orders = self.env['sale.order'].search([
             ('partner_id', '=', self.id),
             ('order_line.product_id.product_tmpl_id', '=', product_id),
             ('state', '=', 'sale')  # Make sure the order is confirmed
         ])
+
         return bool(purchase_orders)
 
 

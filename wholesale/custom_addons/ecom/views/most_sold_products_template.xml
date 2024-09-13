@@ -2,23 +2,29 @@
 <odoo>
     <template id="most_sold_products">
         <t t-call="website.layout">
-            <div class="product-recommendation">
-            <h3>Recommended Products</h3>
+            <div class="product-recommendation container">
+            <h1>Recommended Products</h1>
             <div t-if="recommended_products">
                 <div class="row">
                     <t t-name="ecom.most_sold_products">
                         <div class="most-sold-products">
-                            <h2>Most Sold Products</h2>
-                            <ul>
+                            <h4>Most Sold Products</h4>
+                            <div class="row row-cols-1 row-cols-md-3 g-4">
                                 <t t-foreach="product_sales" t-as="product_data">
-                                    <li>
-                                        <a t-attf-href="/shop/product/#{product_data['product'].id}">
-                                            <t t-esc="product_data['product'].name"/>
-                                        </a>
-                                        - Sold Quantity: <t t-esc="product_data['sales_count']"/>
-                                    </li>
+                                    <div class="col">
+                                        <div class="card">
+                                          <img t-att-src="'/web/image/product.product/' + str(product_data['product'].id) + '/image_1920'" alt="Product Image" class="card-img-top" />
+                                          <div class="card-body">
+                                              <a t-attf-href="/shop/product/#{product_data['product'].id}">
+                                                <h5 class="card-title"><t t-esc="product_data['product'].name"/></h5>
+                                              </a>
+                                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                            - Sold Quantity: <t t-esc="product_data['sales_count']"/>
+                                          </div>
+                                        </div>
+                                      </div>
                                 </t>
-                            </ul>
+                            </div>
                         </div>
                     </t>
                 </div>

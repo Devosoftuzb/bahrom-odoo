@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<templates xml:space="preserver">
+    <t t-name="qweb_tutorials.someTemplate">
+        <div class="alert alert-primary">
+            <h3>Ths is the main template</h3>
+        </div>
+    </t>
+</templates>
