@@ -1,0 +1,223 @@
+<odoo>
+    <template id="custom_product" inherit_id="website_sale.product">
+        <xpath expr="//div[@id='product_details']//div[@class='oe_structure']" position="before">
+            <table style="visibility: hidden;">
+                <div class="oe_minimum_order_qty" t-if="product.minimum_order_qty">
+                    <tr>
+                        <td>
+                            <b>Minimum Order Quantity:</b>
+                        </td>
+                        <td id="qtyId" style="color:red">
+                            <t t-esc="product.minimum_order_qty"/>
+                        </td>
+                    </tr>
+                </div>
+            </table>
+            <div id="errorToaster" class="error-toaster"></div>
+            <script type="text/javascript">
+                const MIN_DELAY = 1000; // Define constants for better readability
+                const ERROR_TOAST_TIMEOUT = 5000;
+                function setQuantityMin(quantityElement, minQty) {
+                quantityElement.dataset.min = minQty;
+                if(quantityElement.value &lt; minQty){
+                quantityElement.value = minQty;
+                }
+                }
+
+                function showErrorToast(message) {
+                const errorToaster = document.getElementById('errorToaster');
+                errorToaster.textContent = message;
+                errorToaster.style.visibility = 'visible';
+                setTimeout(() => {
+                errorToaster.style.visibility = 'hidden';
+                }, ERROR_TOAST_TIMEOUT);
+                }
+
+                setTimeout(() => {
+                try {
+                const quantityElements = document.querySelectorAll('.quantity');
+                const cartButton = document.getElementById("add_to_cart");
+                const minQty = document.getElementById("qtyId").innerHTML;
+                const qtyParse = parseInt(minQty, 10);
+                quantityElements.forEach((quantityElement, index) => {
+                setQuantityMin(quantityElement, qtyParse);
+                quantityElement.addEventListener('blur', (event) => {
+                const targetValue = parseInt(event.target.value, 10);
+                if (isNaN(targetValue) || targetValue &lt; qtyParse) {
+                showErrorToast(`Minimum Order Quantity For The Product is ${qtyParse}.`);
+                event.target.value = qtyParse;
+                }
+                });
+                });
+
+                // Handle quantity subtract button click
+                const subButton = document.getElementsByClassName("js_add_cart_json")[0];
+                subButton.addEventListener('click', () => {
+                const currentMinQty = parseInt(document.getElementsByClassName("quantity")[0].dataset.min, 10);
+                const currentQty = parseInt(document.getElementsByClassName("quantity")[0].value, 10);
+                if (currentMinQty === currentQty) {
+                showErrorToast(`Minimum Order Quantity For The Product is ${currentMinQty}.`);
+                }
+                });
+
+                // Handle add to cart button click (similar logic for other buttons)
+                cartButton.addEventListener('click', () => {
+                setTimeout(() => {
+                const quantityElements2 = document.querySelectorAll('.quantity');
+                const minQty2 = document.getElementById("qtyId").innerHTML;
+                const qtyParse2 = parseInt(minQty2, 10);
+
+                quantityElements2.forEach((quantityElement, index) => {
+                setQuantityMin(quantityElement, qtyParse2);
+                quantityElement.addEventListener('blur', (event) => {
+                const targetValue = parseInt(event.target.value, 10);
+                if (isNaN(targetValue) || targetValue &lt; qtyParse2) {
+                showErrorToast(`Minimum Order Quantity For The Product is ${qtyParse2}.`);
+                event.target.value = qtyParse2;
+                }
+                });
+                });
+
+                // Handle quantity subtract button click
+                const subButton11 = document.querySelectorAll(".js_add_cart_json");
+                subButton11.forEach((cart_button, index) => {
+                cart_button.addEventListener('click', () => {
+                if(index == 2){
+                const currentMinQty = parseInt(document.getElementsByClassName("quantity")[0].dataset.min, 10);
+                const currentQty = parseInt(document.getElementsByClassName("quantity")[0].value, 10);
+                if (currentMinQty === currentQty) {
+                showErrorToast(`Minimum Order Quantity For The Product is ${currentMinQty}.`);
+                }
+                }
+                })
+                })
+                }, MIN_DELAY);
+                });
+                } catch (e) {
+                // handle errors gracefully
+                }
+                }, MIN_DELAY);
+            </script>
+            <style>
+                .error-toaster {
+                position: absolute;
+                bottom: 20px;
+                left: 100%;
+                transform: translateX(-50%);
+                padding: 10px 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 40%);
+                visibility: hidden;
+                transition: visibility 0s, opacity 0.5s ease;
+                border:2px solid #070808a3;
+                bottom:94%;
+                width:20%;
+                height:80px;
+                font-size:18px;
+                margin-left:-9.5%;
+                background-color: #ff4d4d;
+                color: #fff;
+                z-index:2000;
+                }
+                .error-text {
+                display: inline-block;
+                padding: 0 10px;
+                }
+            </style>
+        </xpath>
+    </template>
+    <template id="custom_cart_lines" name="Custom Shopping Cart Lines"
+              inherit_id="website_sale.cart_lines">
+        <xpath expr="//div[@class='d-flex flex-column align-items-end']" position="before">
+            <div class="form-group" style="visibility: hidden;">
+                <label for="minimum_order_qty">Minimum Order Quantity</label>
+                <div class="qtyId1">
+                    <t t-esc="line.product_id.minimum_order_qty"/>
+                </div>
+            </div>
+            <div id="errorToaster" class="error-toaster"></div>
+            <script type="text/javascript">
+                setTimeout(()=>{
+                try{
+                const quantityElements = document.querySelectorAll('.quantity');
+                const qtyId1Elements = document.querySelectorAll('.qtyId1');
+
+                quantityElements.forEach((quantityElement, index) => {
+
+                const value = parseInt(qtyId1Elements[index].innerHTML);
+                quantityElement.setAttribute('data-min', `${value}`);
+
+                if(parseInt(quantityElement.value) &lt; parseInt(value)){
+                quantityElement.value = `${value}`
+                }
+
+                quantityElement.addEventListener('input', (event) => {
+                const targetValue = event.target.value;
+                if (targetValue === "" || targetValue === 0 || targetValue === null || targetValue === undefined ||
+                parseInt(targetValue) &lt; `${value}`) {
+                const errorToaster = document.getElementById('errorToaster');
+                errorToaster.textContent = `Minimum Order Quantity For The Product is ${value}.`;
+                errorToaster.style.visibility = 'visible';
+
+                setTimeout(() => {
+                errorToaster.style.visibility = 'hidden';
+                }, 5000); // 5 seconds timeout
+                event.target.value = `${value}`
+                }
+                });
+                });
+                try{
+                const subButton111 = document.querySelectorAll(".js_add_cart_json");
+                subButton111.forEach((cart_button, index) => {
+                cart_button.addEventListener('click',()=>{
+                try{
+                const updatedVal = index%2==0?(index/2):0;
+                if(index ==0 || index%2 == 0){
+                let currentMinQty = document.getElementsByClassName("quantity")[updatedVal].getAttribute("data-min")
+                let currentQty = document.getElementsByClassName("quantity")[updatedVal].value
+                if(parseInt(currentMinQty) == parseInt(currentQty)){
+                const errorToaster = document.getElementById('errorToaster');
+                errorToaster.textContent = `Minimum Order Quantity For The Product is ${parseInt(currentMinQty)}.`;
+                errorToaster.style.visibility = 'visible';
+
+                setTimeout(() => {
+                errorToaster.style.visibility = 'hidden';
+                }, 5000); // 5 seconds timeout
+                }
+                }
+                }catch(e){}
+                })
+                })
+                }catch(e){}
+
+                }catch(e){}
+
+                },100)
+            </script>
+                        <style>
+                .error-toaster {
+                position: absolute;
+                top: 20px; /* Position near the top */
+                right: 20px; /* Align to the right */
+                transform: translateX(0); /* Remove the horizontal centering */
+                padding: 10px 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+                visibility: hidden;
+                transition: visibility 0s, opacity 0.5s ease;
+                border: 2px solid #070808a3;
+                width: 20%;
+                height: 80px;
+                font-size: 18px;
+                background-color: #ff4d4d;
+                color: #fff;
+                z-index: 2000;
+                }
+                .error-text {
+                display: inline-block;
+                padding: 0 10px;
+                }
+            </style>
+        </xpath>
+    </template>
+</odoo>
