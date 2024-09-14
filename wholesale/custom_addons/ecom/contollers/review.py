@@ -7,6 +7,7 @@ class ReviewController(http.Controller):
     def submit_review(self, product_id, comment, **kwargs):
         product = request.env['product.template'].browse(int(product_id))
         partner = request.env.user.partner_id
+
         if partner.has_bought_product(product.id):
             request.env['product.review'].create({
                 'product_id': product.id,

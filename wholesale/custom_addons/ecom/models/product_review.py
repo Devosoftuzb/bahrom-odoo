@@ -23,6 +23,16 @@ class ResPartner(models.Model):
 
         return bool(purchase_orders)
 
+    def my_product_reviews(self, product_id):
+        self.ensure_one()
+
+        reviews = self.env['product.review'].search([
+            ('product_id', '=', product_id),
+            ('partner_id', '=', self.id),
+        ])
+
+        return reviews
+
 
 class ProductReview(models.Model):
     _name = 'product.review'

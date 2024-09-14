@@ -49,6 +49,16 @@
 
                         <button type="submit" class="btn btn-primary">Submit Review</button>
                     </form>
+
+                    <div class="my-reviews">
+                        <t t-set="reviews" t-value="request.env.user.partner_id.my_product_reviews(product.id)" />
+                        <ul class="list-group list-group-flush">
+                            <t t-foreach="reviews" t-as="review">
+                                <li class="list-group-item"><t t-esc="review.comment" /></li>
+                            </t>
+                        </ul>
+                    </div>
+
                 </t>
                 <t t-else="">
                     <p>You can only review products you've purchased.</p>
