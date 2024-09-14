@@ -9,6 +9,20 @@
                     <t t-name="ecom.most_sold_products">
                         <div class="most-sold-products">
                             <h4>Most Sold Products</h4>
+                            <div class="pb-3">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a t-attf-class="nav-link #{'active' if 'all' == current_category_id else ''}" aria-current="page" href="/shop/most_sold_products">All</a>
+                                    </li>
+
+                                    <t t-foreach="categories" t-as="category">
+                                        <li class="nav-item">
+                                            <a t-attf-class="nav-link #{'active' if category.id == current_category_id else ''}" aria-current="page" t-attf-href="/shop/most_sold_products?category=#{category.name}"><t t-esc="category.name" /></a>
+                                        </li>
+                                    </t>
+                                </ul>
+                            </div>
+
                             <div class="row row-cols-1 row-cols-md-3 g-4">
                                 <t t-foreach="product_sales" t-as="product_data">
                                     <div class="col">
