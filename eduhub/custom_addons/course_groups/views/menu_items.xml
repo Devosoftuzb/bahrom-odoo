@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <menuitem id="eduhub_root_menu" name="EduHUB" sequence="10">
+        <menuitem id="eduhub_courses_menu" name="Courses">
+
+        </menuitem>
+
+        <menuitem id="eduhub_groups_menu" name="Groups">
+
+        </menuitem>
+    </menuitem>
+</odoo>
