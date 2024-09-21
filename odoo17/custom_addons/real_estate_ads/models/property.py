@@ -81,7 +81,7 @@ class PropertyType(models.Model):
 class PropertyTag(models.Model):
     _name = 'estate.property.tag'
 
-    name = fields.Char(string="Tag", required=True)
+    name = fields.Char(string="(Tag)", required=True)
     color = fields.Integer(string="Color")
 
 

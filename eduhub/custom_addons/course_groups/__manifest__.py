@@ -7,14 +7,18 @@
          EduHUB management system.
     """,
     'category': '',
-    'depends': ['base', 'mail'],
+    'depends': ['base', 'mail', 'hr'],
     'data': [
         'security/ir.model.access.csv',
 
-        'views/tasks.xml',
         'views/menu_items.xml',
 
-        'views/map_template.xml',
+        'data/eduhub.week.day.csv',
+        'data/eduhub_invoicing_sequence.xml',
+
+        'views/courses.xml',
+        'views/groups.xml',
+        'views/invoice.xml',
     ],
     'installable': True,
     'application': True,

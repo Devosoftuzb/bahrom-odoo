@@ -1,1 +1,1 @@
-from . import courses, groups
+from . import course, group, invoice
