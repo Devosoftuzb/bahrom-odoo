@@ -4,12 +4,12 @@ access_eduhub_course_tag,access_eduhub_course_tag,model_eduhub_course_tag,base.g
 
 access_eduhub_group,access_eduhub_group,model_eduhub_group,base.group_user,1,1,1,1
 access_eduhub_week_day,access_eduhub_week_day,model_eduhub_week_day,base.group_user,1,1,1,1
-access_eduhub_invoice,access_eduhub_invoice,model_eduhub_invoice,base.group_user,1,1,1,1
 
 access_eduhub_invoice_admin,access_eduhub_invoice_admin,model_eduhub_invoice,group_eduhub_admin,1,1,1,1
-access_eduhub_invoice_administrator,access_eduhub_invoice_administrator,model_eduhub_invoice,group_eduhub_admin,1,0,0,0
+access_eduhub_invoice_administrator,access_eduhub_invoice_administrator,model_eduhub_invoice,group_eduhub_administrator,1,0,0,0
 
-access_eduhub_invoice_payment,access_eduhub_invoice_payment,model_eduhub_invoice_payment,base.group_user,1,1,1,1
+access_eduhub_invoice_payment_admin,access_eduhub_invoice_payment_admin,model_eduhub_invoice_payment,group_eduhub_admin,1,1,1,1
+access_eduhub_invoice_payment_administrator,access_eduhub_invoice_payment_administrator,model_eduhub_invoice_payment,group_eduhub_administrator,1,0,0,0
 
 
 access_hr_employee_user,access_hr_employee_user,hr.model_hr_employee,base.group_user,1,1,1,1
