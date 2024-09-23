@@ -9,6 +9,7 @@
     'category': '',
     'depends': ['base', 'mail', 'hr'],
     'data': [
+        'security/invoice_groups.xml',
         'security/ir.model.access.csv',
 
         'views/menu_items.xml',

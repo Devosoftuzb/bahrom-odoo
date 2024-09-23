@@ -1,7 +1,7 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
-from datetime import datetime
+from datetime import datetime, date
 
 
 class Group(models.Model):
@@ -13,11 +13,41 @@ class Group(models.Model):
     description = fields.Text(string='Description')
     course_id = fields.Many2one('eduhub.course', string='Group`s Course')
     students_ids = fields.Many2many('res.partner')
+
     start_time = fields.Char(string='Group Start Time', help='format - H:M', inverse='_check_start_time')
     end_time = fields.Char(string='Group End Time', help='format - H:M', inverse='_check_end_time')
+    start_time_datetime = fields.Datetime(compute='_compute_start_time', store=True)
+    end_time_datetime = fields.Datetime(compute='_compute_end_time', store=True)
+
     days = fields.Many2many('eduhub.week.day', string='Week Days')
     status = fields.Selection([('active', 'Active'), ('inactive', 'Inactive')])
     students_count = fields.Integer(string='Students Count', compute='_compute_students_count')
+
+    @api.depends('start_time')
+    def _compute_start_time(self):
+        for record in self:
+            if record.start_time:
+                try:
+                    today = date.today()  # Use today's date as the date part
+                    start_time = datetime.strptime(record.start_time, "%H:%M").time()
+                    record.start_time_datetime = datetime.combine(today, start_time)
+                except ValueError:
+                    record.start_time_datetime = False
+            else:
+                record.start_time_datetime = False
+
+    @api.depends('end_time')
+    def _compute_start_time(self):
+        for record in self:
+            if record.end_time:
+                try:
+                    today = date.today()  # Use today's date as the date part
+                    start_time = datetime.strptime(record.end_time, "%H:%M").time()
+                    record.end_time_datetime = datetime.combine(today, start_time)
+                except ValueError:
+                    record.end_time_datetime = False
+            else:
+                record.end_time_datetime = False
 
     @api.depends('students_count')
     def _compute_students_count(self):

@@ -76,16 +76,16 @@
             </field>
         </record>
 
-<!--        <record id="eduhub_group_calendar_view" model="ir.ui.view">-->
-<!--            <field name="name">eduhub.group.calendar</field>-->
-<!--            <field name="model">eduhub.group</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <calendar string="Group Calendar" date_start="start_time" data_stop="end_time" color="">-->
-<!--                    <field name="name"/>-->
-<!--                    <field name="days" />-->
-<!--                </calendar>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="eduhub_group_calendar_view" model="ir.ui.view">
+            <field name="name">eduhub.group.calendar</field>
+            <field name="model">eduhub.group</field>
+            <field name="arch" type="xml">
+                <calendar string="Group Calendar" date_start="start_time_datetime" date_stop="end_time_datetime">
+                    <field name="name"/>
+                    <field name="days" />
+                </calendar>
+            </field>
+        </record>
 
         <record id="eduhub_group_graph_view" model="ir.ui.view">
             <field name="name">eduhub.group.graph</field>
@@ -93,21 +93,22 @@
             <field name="arch" type="xml">
                 <graph string="ModelTitle">
                     <field name="name"/>
-                    <field name="start_time" type="measure"/>
+                    <field name="students_count" type="row"/>
                 </graph>
             </field>
         </record>
 
-<!--        <record id="eduhub_group_pivot_view" model="ir.ui.view">-->
-<!--            <field name="name">eduhub.group.pivot</field>-->
-<!--            <field name="model">eduhub.group</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <pivot string="ModelTitle">-->
-<!--                    <field name="example_field" type="row"/>-->
-<!--                    <field name="example_field" type="measure"/>-->
-<!--                </pivot>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="eduhub_group_pivot_view" model="ir.ui.view">
+            <field name="name">eduhub.group.pivot</field>
+            <field name="model">eduhub.group</field>
+            <field name="arch" type="xml">
+                <pivot string="EduHUB Group Pivot View">
+                    <field name="students_count" type="row"/>
+                    <field name="days" type="measure" />
+                    <field name="course_id" type="row" />
+                </pivot>
+            </field>
+        </record>
 
         <record id="eduhub_group_search_view" model="ir.ui.view">
             <field name="name">eduhub.group.search</field>

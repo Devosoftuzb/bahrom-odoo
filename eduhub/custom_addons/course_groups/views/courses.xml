@@ -90,21 +90,21 @@
             <field name="arch" type="xml">
                 <graph string="ModelTitle">
                     <field name="name"/>
-                    <field name="duration" type="measure"/>
+                    <field name="students_count" type="row"/>
                 </graph>
             </field>
         </record>
 
-<!--        <record id="eduhub_course_pivot_view" model="ir.ui.view">-->
-<!--            <field name="name">eduhub.course.pivot</field>-->
-<!--            <field name="model">eduhub.course</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <pivot string="ModelTitle">-->
-<!--                    <field name="example_field" type="row"/>-->
-<!--                    <field name="example_field" type="measure"/>-->
-<!--                </pivot>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="eduhub_course_pivot_view" model="ir.ui.view">
+            <field name="name">eduhub.course.pivot</field>
+            <field name="model">eduhub.course</field>
+            <field name="arch" type="xml">
+                <pivot string="EduHUB Pivot View">
+                    <field name="price" type="row"/>
+                    <field name="duration" type="measure"/>
+                </pivot>
+            </field>
+        </record>
 
         <record id="eduhub_course_search_view" model="ir.ui.view">
             <field name="name">eduhub.course.search</field>
