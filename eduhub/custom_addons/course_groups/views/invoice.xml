@@ -34,16 +34,20 @@
                                 <field name="student_id" />
                             </group>
                             <group>
-                                <field name="payment_method_id" />
+                                <field name="notes" />
                             </group>
                             <group>
-                                <field name="notes" />
+                                <field name="color_code" string="Color" widget="color" />
                             </group>
                         </group>
 
                         <notebook>
                             <page string="Courses">
                                 <field name="courses_ids" options="{'no_create': True}" />
+                            </page>
+
+                            <page string="Payment Methods">
+                                <field name="payment_method_id" />
                             </page>
                         </notebook>
                     </sheet>
@@ -76,46 +80,55 @@
             <field name="name">eduhub.invoice.calendar</field>
             <field name="model">eduhub.invoice</field>
             <field name="arch" type="xml">
-                <calendar string="Invoices Calendar" date_start="create_date" color="">
+                <calendar string="Invoices Calendar" date_start="create_date" color="color_code">
+                    <field name="color_code" widget="color" />
                     <field name="number"/>
+                    <field name="notes" />
+                    <field name="create_uid" string="Created By"/>
                 </calendar>
             </field>
         </record>
+
 
         <record id="eduhub_invoice_graph_view" model="ir.ui.view">
             <field name="name">eduhub.invoice.graph</field>
             <field name="model">eduhub.invoice</field>
             <field name="arch" type="xml">
-                <graph string="ModelTitle">
+                <graph string="Invoices">
                     <field name="number"/>
                     <field name="amount_due" type="measure"/>
+                    <field name="amount_paid" type="measure"/>
                 </graph>
             </field>
         </record>
 
-<!--        <record id="eduhub_group_pivot_view" model="ir.ui.view">-->
-<!--            <field name="name">eduhub.group.pivot</field>-->
-<!--            <field name="model">eduhub.group</field>-->
-<!--            <field name="arch" type="xml">-->
-<!--                <pivot string="ModelTitle">-->
-<!--                    <field name="example_field" type="row"/>-->
-<!--                    <field name="example_field" type="measure"/>-->
-<!--                </pivot>-->
-<!--            </field>-->
-<!--        </record>-->
+        <record id="eduhub_group_pivot_view" model="ir.ui.view">
+            <field name="name">eduhub.invoice.pivot</field>
+            <field name="model">eduhub.invoice</field>
+            <field name="arch" type="xml">
+                <pivot string="Invoice Pivot View">
+                    <field name="amount_paid" type="row"/>
+                    <field name="amount_due" type="measure"/>
+                </pivot>
+            </field>
+        </record>
 
         <record id="eduhub_invoice_search_view" model="ir.ui.view">
             <field name="name">eduhub.invoice.search</field>
             <field name="model">eduhub.invoice</field>
             <field name="arch" type="xml">
                 <search string="ModelTitle">
-                    <filter string="Active" name="active" domain="[('status', '=', 'active')]" />
-                    <filter string="Inactive" name="inactive" domain="[('status', '=', 'inactive')]" />
+                    <filter string="Pending" name="pending" domain="[('status', '=', 'pending')]" />
+                    <filter string="Paid" name="paid" domain="[('status', '=', 'paid')]" />
+                    <filter string="Partially Paid" name="partially_paid" domain="[('status', '=', 'partially_paid')]" />
+                    <filter string="Overdue" name="overdue" domain="[('status', '=', 'overdue')]" />
                     <group expand="1" string="Group By">
                         <filter string="Course" name="course" domain="[]"
                                 context="{'group_by':'courses_ids'}"/>
                         <filter string="Status" name="status"
                                 context="{'group_by':'status'}"/>
+                        <filter string="Students" name="student_id"
+                                context="{'group_by':'student_id'}"/>
                     </group>
                 </search>
             </field>

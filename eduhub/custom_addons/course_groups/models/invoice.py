@@ -14,9 +14,17 @@ class Invoice(models.Model):
     amount_due = fields.Float()
     amount_paid = fields.Float()
     payment_method_id = fields.One2many('eduhub.invoice.payment', 'invoice_id')
-    status = fields.Selection([('paid', 'Paid'), ('pending', 'Pending'),
+    status = fields.Selection([('pending', 'Pending'), ('paid', 'Paid'),
                                ('overdue', 'Overdue'), ('partially_paid', 'Partially Paid')], default='pending')
     notes = fields.Text()
+    color_code = fields.Char()
+
+    @api.onchange('amount_due', 'amount_paid')
+    def _status_controller(self):
+        if self.amount_due == self.amount_paid:
+            self.status = 'paid'
+        if self.amount_due > self.amount_paid > 0:
+            self.status = 'partially_paid'
 
 
 class PaymentMethods(models.Model):
