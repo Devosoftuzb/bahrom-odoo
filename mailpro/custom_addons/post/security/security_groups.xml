@@ -1,0 +1,37 @@
+<odoo>
+    <record id="user_role_category" model="ir.module.category">
+        <field name="name">User Role</field>
+        <field name="description">Select User Role</field>
+        <field name="sequence">10</field>
+    </record>
+
+    <record id="group_super_admin" model="res.groups">
+        <field name="name">Super Admin</field>
+        <field name="category_id" ref="user_role_category"/>
+        <field name="comment">This group grants access to manage both Promo Codes and Delivery Orders</field>
+    </record>
+
+    <record id="group_operator" model="res.groups">
+        <field name="name">Operator</field>
+        <field name="category_id" ref="user_role_category"/>
+        <field name="comment">This group grants access to manage both Promo Codes and Delivery Orders</field>
+    </record>
+
+    <record id="group_storekeeper" model="res.groups">
+        <field name="name">Storekeeper</field>
+        <field name="category_id" ref="user_role_category"/>
+        <field name="comment">This group grants access to manage both Promo Codes and Delivery Orders</field>
+    </record>
+
+    <record id="group_delivery_man" model="res.groups">
+        <field name="name">Delivery man</field>
+        <field name="category_id" ref="user_role_category"/>
+        <field name="comment">This group grants access to manage both Promo Codes and Delivery Orders</field>
+    </record>
+
+    <record id="group_head_of_the_affiliate" model="res.groups">
+        <field name="name">Head of the affiliate</field>
+        <field name="category_id" ref="user_role_category"/>
+        <field name="comment">This group grants access to manage both Promo Codes and Delivery Orders</field>
+    </record>
+</odoo>

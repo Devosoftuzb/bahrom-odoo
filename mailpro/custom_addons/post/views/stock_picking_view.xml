@@ -1,0 +1,15 @@
+<odoo>
+    <record id="view_picking_form_inherit_delivery_center" model="ir.ui.view">
+        <field name="name">stock.picking.form.inherit.delivery.center</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="sender_id" placeholder="Select Sender User"/>
+                <field name="receiver_id" placeholder="Select Receiver User"/>
+                <field name="promo_code" />
+                <field name="carrier_price" readonly="1" />
+            </xpath>
+        </field>
+    </record>
+</odoo>

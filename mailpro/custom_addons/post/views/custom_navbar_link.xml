@@ -1,0 +1,9 @@
+<odoo>
+    <template id="custom_navbar_link_inherit" inherit_id="website.layout">
+        <xpath expr="//ul[contains(@class, 'navbar-nav')]" position="inside">
+            <li>
+                <a href="/search-order" class="btn btn-info">Search Order</a>
+            </li>
+        </xpath>
+    </template>
+</odoo>

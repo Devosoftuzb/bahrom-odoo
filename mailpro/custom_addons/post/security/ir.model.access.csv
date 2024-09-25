@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_post_promo_code_super_admin,access.post.promo.code.super.admin,post.model_post_promo_code,group_super_admin,1,1,1,1
+access_post_promo_code_operator,access.post.promo.code.operator,post.model_post_promo_code,group_operator,1,1,1,1
+access_post_promo_code_storekeeper,access.post.promo.code.storekeeper,post.model_post_promo_code,group_storekeeper,0,0,0,0
+access_post_promo_code_delivery_man,access.post.promo.code.delivery.man,post.model_post_promo_code,group_delivery_man,0,0,0,0
+access_post_promo_code_head_of_the_affiliate,access.post.promo.code.head.of.the.affiliate,post.model_post_promo_code,group_head_of_the_affiliate,1,1,1,1

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="search_order_template" name="Search Order Page">
+        <t name="Any Search Results" t-name="website.list_hybrid">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container pt24 pb24">
+                        <t t-call="website.website_search_box_input">
+                            <t t-set="_classes" t-valuef="mt8"/>
+                            <t t-set="search_type" t-valuef="all"/>
+                            <t t-set="action" t-valuef="/search-order/"/>
+                        </t>
+                        <div class="mt24 h3">Search Results</div>
+                        <t t-if="not results">
+                            <div class="alert alert-warning mt8" role="alert">
+                                <t t-if="search">
+                                    Your search '<t t-esc="search"/>' did not match anything.
+                                </t>
+                                <t t-else="">
+                                    Specify a search term.
+                                </t>
+                            </div>
+                        </t>
+                        <t t-elif="fuzzy_search">
+                            <div class="alert alert-warning mt8" role="alert">
+                                Your search '<t t-esc="search"/>' did not match anything.
+                                Results are displayed for '<t t-esc="fuzzy_search"/>'.
+                            </div>
+                        </t>
+                        <div t-if="results" class="table-responsive">
+                            <t t-call="website.one_hybrid" t-foreach="results" t-as="result" t-key="result_index"/>
+                        </div>
+                        <div t-if="pager" class="o_portal_pager d-flex justify-content-center">
+                            <t t-call="website.pager"/>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
