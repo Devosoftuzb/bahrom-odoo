@@ -7,8 +7,7 @@
             <xpath expr="//field[@name='partner_id']" position="after">
                 <field name="sender_id" placeholder="Select Sender User"/>
                 <field name="receiver_id" placeholder="Select Receiver User"/>
-                <field name="promo_code" />
-                <field name="carrier_price" readonly="1" />
+                <field name="carrier_price" />
             </xpath>
         </field>
     </record>
