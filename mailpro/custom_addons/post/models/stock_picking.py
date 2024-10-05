@@ -7,17 +7,25 @@ class StockPicking(models.Model):
 
     sender_id = fields.Many2one('res.partner', string='Product Sender')
     receiver_id = fields.Many2one('res.partner', string='Product Receiver')
+    sender_branch_id = fields.Many2one('res.company', string='Sender branch', readonly=True, compute='_select_sender_branch')
 
-    promo_code = fields.Char(string='Promo Code', inverse='_check_promo_code')
-    carrier_price = fields.Float(string='Shipping Cost', compute='_compute_shipping_cost', store=True)
+    state = fields.Selection([('draft', 'Draft'),
+                              ('waiting', 'In Store'),
+                              ('confirmed', 'Confirmed'),
+                              ('assigned', 'In Delivery'),
+                              ('done', 'Delivered'),
+                              ('cancel', 'Canceled')])
 
-    def _check_promo_code(self):
+    @api.constrains('sender_branch_id')
+    def _select_sender_branch(self):
         for rec in self:
-            promo_code = self.env['post.promo.code'].search([('code', '=', rec.promo_code)], limit=1)
-            if promo_code:
-                if promo_code.type == 'fixed':
-                    rec.carrier_price -= promo_code.fixed_price
-                elif promo_code.type == 'percentage':
-                    rec.carrier_price *= (1 - (promo_code.percentage / 100))
+            if self.env.user.company_id:
+                rec.sender_branch_id = self.env.user.company_id.id
             else:
-                raise ValidationError('Promo Code is not available!')
+                raise ValidationError('You don`t have company')
+
+    def write(self, vals):
+        for record in self:
+            if record.sender_branch_id.id != self.env.user.company_id.id:
+                raise ValidationError('You only can edit branch of yours.')
+        return super().write(vals)

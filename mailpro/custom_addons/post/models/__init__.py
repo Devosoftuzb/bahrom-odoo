@@ -1,1 +1,1 @@
-from . import stock_picking, product_template, promocode, shipping_method
+from . import stock_picking, product_template, shipping_method, sale_order
