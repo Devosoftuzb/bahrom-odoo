@@ -5,33 +5,32 @@
             <t t-call="website.layout">
                 <div id="wrap">
                     <div class="container pt24 pb24">
-                        <t t-call="website.website_search_box_input">
-                            <t t-set="_classes" t-valuef="mt8"/>
-                            <t t-set="search_type" t-valuef="all"/>
-                            <t t-set="action" t-valuef="/search-order/"/>
-                        </t>
+                        <!-- Custom Search Form -->
+                        <form action="/search-order/" method="post" class="form-inline">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="form-group mb-2">
+                                <label for="track_id" class="sr-only">Track ID</label>
+                                <input type="text" id="track_id" name="track_id" class="form-control" placeholder="Enter Track ID" />
+                            </div>
+                            <button type="submit" class="btn btn-primary mb-2">Search</button>
+                        </form>
+
                         <div class="mt24 h3">Search Results</div>
                         <t t-if="not results">
                             <div class="alert alert-warning mt8" role="alert">
                                 <t t-if="search">
-                                    Your search '<t t-esc="search"/>' did not match anything.
+                                    Your search for Track ID '<t t-esc="search"/>' did not match anything.
                                 </t>
                                 <t t-else="">
-                                    Specify a search term.
+                                    Specify a Track ID.
                                 </t>
-                            </div>
-                        </t>
-                        <t t-elif="fuzzy_search">
-                            <div class="alert alert-warning mt8" role="alert">
-                                Your search '<t t-esc="search"/>' did not match anything.
-                                Results are displayed for '<t t-esc="fuzzy_search"/>'.
                             </div>
                         </t>
                         <div t-if="results" class="table-responsive">
-                            <t t-call="website.one_hybrid" t-foreach="results" t-as="result" t-key="result_index"/>
-                        </div>
-                        <div t-if="pager" class="o_portal_pager d-flex justify-content-center">
-                            <t t-call="website.pager"/>
+                            <t t-esc="results.name" />
+                            <h3>
+                                <t t-esc="results.state"/>
+                            </h3>
                         </div>
                     </div>
                 </div>
