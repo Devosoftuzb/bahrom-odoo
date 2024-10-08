@@ -11,6 +11,7 @@
     'data': [
         'security/security_groups.xml',
         'security/ir.model.access.csv',
+        'security/record_rules.xml',
 
         'views/search_order.xml',
         'views/custom_navbar_link.xml',
