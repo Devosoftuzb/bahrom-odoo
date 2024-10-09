@@ -45,7 +45,7 @@
     <record id="restrict_product_company_access_rule" model="ir.rule">
         <field name="name">Restrict Products by Company</field>
         <field name="model_id" ref="product.model_product_product"/>
-        <field name="domain_force">[('company_id', '=', user.company_id.id)]</field>
+        <field name="domain_force">['|', ('company_id', '=', False), ('company_id', '=', user.company_id.id)]</field>
         <field name="groups" eval="[(4, ref('post.group_operator')), (4, ref('post.group_storekeeper')), (4, ref('post.group_delivery_man')), (4, ref('post.group_head_of_the_affiliate'))]"/>
         <field name="perm_read" eval="1"/>
         <field name="perm_write" eval="1"/>
