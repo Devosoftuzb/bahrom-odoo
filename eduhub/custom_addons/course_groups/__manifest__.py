@@ -20,6 +20,7 @@
         'views/courses.xml',
         'views/groups.xml',
         'views/invoice.xml',
+        'views/salary.xml',
     ],
     'installable': True,
     'application': True,

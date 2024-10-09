@@ -122,6 +122,7 @@
                     <filter string="Paid" name="paid" domain="[('status', '=', 'paid')]" />
                     <filter string="Partially Paid" name="partially_paid" domain="[('status', '=', 'partially_paid')]" />
                     <filter string="Overdue" name="overdue" domain="[('status', '=', 'overdue')]" />
+                    <filter string="Last 7 Days" name="date_range"/>
                     <group expand="1" string="Group By">
                         <filter string="Course" name="course" domain="[]"
                                 context="{'group_by':'courses_ids'}"/>

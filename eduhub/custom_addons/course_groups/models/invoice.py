@@ -1,6 +1,8 @@
 from odoo import fields, models, api, _
 from odoo.exceptions import ValidationError
 
+import time
+
 
 class Invoice(models.Model):
     _name = 'eduhub.invoice'
@@ -19,6 +21,14 @@ class Invoice(models.Model):
     notes = fields.Text()
     color_code = fields.Char()
 
+    _filters = {
+        'date_range': {
+            'name': 'Date Range',
+            'type': 'date_range',
+            'default': lambda self: (time.strftime('%Y-%m-%d'), time.strftime('%Y-%m-%d')),
+        },
+    }
+
     @api.onchange('amount_due', 'amount_paid')
     def _status_controller(self):
         if self.amount_due == self.amount_paid:
@@ -35,3 +45,12 @@ class PaymentMethods(models.Model):
     invoice_id = fields.Many2one('eduhub.invoice')
     amount = fields.Float()
     transaction_id = fields.Char(string='Transaction ID')
+
+
+class Salary(models.Model):
+    _name = 'eduhub.invoice.salary'
+    _description = 'Salary of teachers'
+
+    price = fields.Float(string='Salary', required=True)
+    teacher_id = fields.Many2one('hr.employee', string='Teacher', required=True)
+    notes = fields.Text()
