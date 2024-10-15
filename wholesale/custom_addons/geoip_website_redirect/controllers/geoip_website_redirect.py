@@ -33,7 +33,7 @@ class Geolocation(Home):
         """ Get location details of user using ip address"""
         response = requests.get(f'http://ip-api.com/json/{ip_address}',
                                 timeout=20).json()
-        return {"country": response.get("country")}
+        return {"country": response.get("country", 'USA')}
 
     @http.route()
     def web_login(self, redirect=None, **kw):
