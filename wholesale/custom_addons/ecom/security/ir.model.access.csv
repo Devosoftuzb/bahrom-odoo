@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 ecom.access_product_review,access_product_review,ecom.model_product_review,base.group_user,1,1,1,1
 ecom.access_product_brand,access_product_brand,ecom.model_product_brand,base.group_user,1,1,1,1
+access_sale_order_line_public,access_sale_order_line_public,sale.model_sale_order_line,base.group_public,1,0,0,0
