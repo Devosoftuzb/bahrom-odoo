@@ -9,12 +9,8 @@
         # 'static/xml/product_template_views.xml',
         'views/product_template_views.xml',
         'views/most_sold_products_template.xml',
+        'views/brands.xml',
     ],
-    'assets': {
-        'web.assets_frontend': [
-
-        ],
-    },
     'installable': True,
-    'application': False,
+    'application': True,
 }

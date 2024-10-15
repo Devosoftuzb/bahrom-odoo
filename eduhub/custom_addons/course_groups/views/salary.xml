@@ -2,9 +2,9 @@
 <odoo>
     <data>
 
-        <record id="eduhub_invoice_salary_form_view" model="ir.ui.view">
-            <field name="name">eduhub.invoice.salary.form</field>
-            <field name="model">eduhub.invoice.salary</field>
+        <record id="eduhub_salary_form_view" model="ir.ui.view">
+            <field name="name">eduhub.salary.form</field>
+            <field name="model">eduhub.salary</field>
             <field name="arch" type="xml">
                 <form string="Invoice Form">
                     <sheet>
@@ -33,9 +33,9 @@
             </field>
         </record>
 
-        <record id="eduhub_invoice_salary_tree_view" model="ir.ui.view">
-            <field name="name">eduhub.invoice.salary.tree</field>
-            <field name="model">eduhub.invoice.salary</field>
+        <record id="eduhub_salary_tree_view" model="ir.ui.view">
+            <field name="name">eduhub.salary.tree</field>
+            <field name="model">eduhub.salary</field>
             <field name="arch" type="xml">
                 <tree string="Invoicec">
                     <field name="create_date"/>
@@ -45,9 +45,9 @@
             </field>
         </record>
 
-        <record id="eduhub_invoice_salary_search_view" model="ir.ui.view">
-            <field name="name">eduhub.invoice.salary.search</field>
-            <field name="model">eduhub.invoice.salary</field>
+        <record id="eduhub_salary_search_view" model="ir.ui.view">
+            <field name="name">eduhub.salary.search</field>
+            <field name="model">eduhub.salary</field>
             <field name="arch" type="xml">
                 <search string="ModelTitle">
                     <group expand="1" string="Group By">
@@ -58,10 +58,10 @@
             </field>
         </record>
 
-        <record id="eduhub_invoice_salary_act_window" model="ir.actions.act_window">
+        <record id="eduhub_salary_act_window" model="ir.actions.act_window">
             <field name="name">Salaries</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">eduhub.invoice.salary</field>
+            <field name="res_model">eduhub.salary</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{"search_default_example_field":1}</field>
             <field name="help" type="html">
@@ -71,7 +71,7 @@
             </field>
         </record>
 
-        <menuitem id="eduhub_invoices_menu" name="Salaries" parent="eduhub_root_menu" action="eduhub_invoice_salary_act_window" sequence="10" />
+        <menuitem id="eduhub_salaries_menu" name="Salaries" parent="eduhub_root_menu" action="eduhub_salary_act_window" sequence="11" />
 
     </data>
 </odoo>

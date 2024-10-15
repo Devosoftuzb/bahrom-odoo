@@ -45,12 +45,3 @@ class PaymentMethods(models.Model):
     invoice_id = fields.Many2one('eduhub.invoice')
     amount = fields.Float()
     transaction_id = fields.Char(string='Transaction ID')
-
-
-class Salary(models.Model):
-    _name = 'eduhub.invoice.salary'
-    _description = 'Salary of teachers'
-
-    price = fields.Float(string='Salary', required=True)
-    teacher_id = fields.Many2one('hr.employee', string='Teacher', required=True)
-    notes = fields.Text()

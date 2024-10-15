@@ -10,8 +10,6 @@ class Brand(models.Model):
 class ResPartner(models.Model):
     _inherit = 'res.partner'
 
-    brand_id = fields.Many2one('product.brand', string='Brand')
-
     def has_bought_product(self, product_id):
         self.ensure_one()
 

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="wholesale_product_brand_view_form" model="ir.ui.view">
+        <field name="name">wholesale_product_brand_view_form</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <form string="wholesale_product_brand_form">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="wholesale_product_brand_view_tree" model="ir.ui.view">
+        <field name="name">_view_tree</field>
+        <field name="model">product.brand</field>
+        <field name="arch" type="xml">
+            <tree string="wholesale_product_brand_view_tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="wholesale_brand_action" model="ir.actions.act_window">
+        <field name="name">product.brand</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">product.brand</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- This Menu Item will appear in the Upper bar, That's why It needs NO parent or action -->
+    <menuitem id="wholesale_menu_root" name="Wholesale" sequence="10"/>
+    <!-- This Menu Item must have a parent and an action -->
+    <menuitem id="wholesale_brand_menu" name="Brand" parent="wholesale_menu_root" action="wholesale_brand_action" sequence="10"/>
+</odoo>
